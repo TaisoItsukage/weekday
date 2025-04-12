@@ -34,6 +34,16 @@ export default function QuizPage() {
 
   const [elapsedTime, setElapsedTime] = useState(0);
 
+  const [maruSound, setMaruSound] = useState<HTMLAudioElement | null>(null);
+  const [batsuSound, setBatsuSound] = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const maru = new Audio("/sounds/maru.mp3");
+    const batsu = new Audio("/sounds/batsu.mp3");
+    setMaruSound(maru);
+    setBatsuSound(batsu);
+  }, []);
+
   useEffect(() => {
     if (finished) return; // 終了後は計測停止
 
@@ -60,13 +70,9 @@ export default function QuizPage() {
 
     // 毎回新しく生成する
     if (isCorrect) {
-      const maruSound = new Audio("/sounds/maru.mp3");
-      maruSound.currentTime = 0;
-      maruSound.play();
+      maruSound!.play();
     } else {
-      const batsuSound = new Audio("/sounds/batsu.mp3");
-      batsuSound.currentTime = 0;
-      batsuSound.play();
+      batsuSound!.play();
     }
 
     // ユーザー回答を保存

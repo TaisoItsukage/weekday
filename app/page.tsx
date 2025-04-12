@@ -3,15 +3,21 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const router = useRouter()
+  const router = useRouter();
+  const [startSound, setStartSound] = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const sound = new Audio("/sounds/start.mp3");
+    setStartSound(sound);
+  }, []);
 
   const handleStart = () => {
-    const startSound = new Audio("/sounds/start.mp3");
-    startSound.play();
-    router.push("/quiz")
-  }
+    startSound?.play();
+    router.push("/quiz");
+  };
 
   return (
     <div className="flex flex-col items-center gap-6 mt-10">
@@ -27,5 +33,5 @@ export default function Home() {
         スタート
       </button>
     </div>
-  )
+  );
 }
