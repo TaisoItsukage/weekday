@@ -116,6 +116,9 @@ export default function QuizPage() {
         <p className="text-center">
           {correctCount} / {quizDates.length} 問正解
         </p>
+        <p className="text-center text-blue-500 font-bold">
+          経過時間: {elapsedTime}秒
+        </p>
         <div className="border border-gray-700 rounded p-4 space-y-2">
           {results.map((r, idx) => (
             <div
@@ -135,6 +138,7 @@ export default function QuizPage() {
             </div>
           ))}
         </div>
+
         <button
           className="block mx-auto mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded text-white font-semibold"
           onClick={() => router.push("/")}
@@ -153,7 +157,7 @@ export default function QuizPage() {
         <h2 className="text-xl font-semibold">
           問題 {currentIndex + 1} / {quizDates.length}
         </h2>
-        <span className="text-red-400 font-bold">
+        <span className="text-blue-500 font-bold">
           経過時間: {elapsedTime}秒
         </span>
       </div>
